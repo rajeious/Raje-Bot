@@ -1,2 +1,3 @@
 # RajeBot
-Rajeious's Bot
+shell :
+pip install -r requirements.txt
