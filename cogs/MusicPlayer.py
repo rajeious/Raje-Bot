@@ -13,7 +13,7 @@ class MusicPlayer(commands.Cog):
         print("Setting up Wavelink node...")
         # Wavelink 2.0 has made connecting Nodes easier... Simply create each Node
         # and pass it to NodePool.connect with the client/bot.
-        node: wavelink.Node = wavelink.Node(uri='http://localhost:2333', password='youshallnotpass')
+        node: wavelink.Node = wavelink.Node(uri='lavalink.alexanderof.xyz:2333', password='lavalink', secure=False)
         try:
             await wavelink.NodePool.connect(client=self.client, nodes=[node])
         except Exception as e:
