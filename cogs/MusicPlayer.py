@@ -47,6 +47,10 @@ class MusicPlayer(commands.Cog):
     async def play(self, interaction: discord.Interaction, *, search: str):
         try:
             
+            if not interaction.user.voice or not interaction.user.voice.channel:
+                await interaction.response.send_message("You must join a voice channel to play music.")
+                return
+            
             await interaction.response.defer()
 
             if not interaction.guild.voice_client:
@@ -73,6 +77,11 @@ class MusicPlayer(commands.Cog):
     @app_commands.command(name="pause", description="the bot will pause the currently playing music")
     async def pause(self, interaction: discord.Interaction):
         try:
+            
+            if not interaction.user.voice or not interaction.user.voice.channel:
+                await interaction.response.send_message("You must be in a voice channel to use this command.")
+                return
+            
             vc = interaction.guild.voice_client
             if vc.is_playing:
                 await vc.pause()
@@ -87,6 +96,11 @@ class MusicPlayer(commands.Cog):
     @app_commands.command(name="resume", description="the bot will resume the currently paused music")
     async def resume(self, interaction: discord.Interaction):
         try:
+            
+            if not interaction.user.voice or not interaction.user.voice.channel:
+                await interaction.response.send_message("You must be in a voice channel to use this command.")
+                return
+            
             vc = interaction.guild.voice_client
             if vc.is_paused():
                 await vc.resume()
@@ -101,6 +115,11 @@ class MusicPlayer(commands.Cog):
     @app_commands.command(name="stop", description="the bot will stop playing music")
     async def stop(self, interaction: discord.Interaction):
         try:
+            
+            if not interaction.user.voice or not interaction.user.voice.channel:
+                await interaction.response.send_message("You must be in a voice channel to use this command.")
+                return
+            
             vc = interaction.guild.voice_client
             if vc.is_playing:
                 await vc.stop()
