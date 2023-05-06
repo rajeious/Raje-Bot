@@ -3,11 +3,11 @@ import os
 import asyncio
 from discord.ext import commands
 import threading
+from threading import thread
 import time
-import sys
-import subprocess
 import urllib.request
 import requests
+from keep_alive import keep_alive
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
@@ -81,4 +81,5 @@ async def main():
     await load()
     await client.start(os.getenv("TOKEN"))
 
+keep_alive()
 asyncio.run(main())
